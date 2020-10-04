@@ -2,12 +2,6 @@ package models
 
 import "github.com/jinzhu/gorm"
 
-type User struct{
-	FirstName string `json:"firstname"`
-	LastName string `json:"lastname"`
-	IsFired bool
-}
-
 //This struct will be implemented in this project !!!!!
 type Customer struct {
 	gorm.Model
