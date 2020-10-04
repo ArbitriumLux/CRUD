@@ -21,7 +21,7 @@ type User struct{
 	IsFired bool
 }
 func usersPage(w http.ResponseWriter, r *http.Request) {
-	users := []User{User{"Вася", "Жопин", false}, User{"Эдуард", "Педуардов", true}}
+	users := []User{User{"ANTON", "Sargar ASS", false}, User{"Эдуард", "Педуардов", true}}
 	//js, _ := json.Marshal(users)
 	tmpl, err := template.ParseFiles("static/users.html")
 	if err != nil {
