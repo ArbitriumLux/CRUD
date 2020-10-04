@@ -19,8 +19,6 @@ func Router()  {
 	//router.HandleFunc("/customer/{id}", middleware.GetCustomer).Methods("GET")
 
 	handler := cors.Default().Handler(router)
-	// TODO move this to main.go but at first I should somehow pass the "handler" variable to main package from here ()
-
 	log.Fatal(http.ListenAndServe(server.Port, handler))
 
 }
