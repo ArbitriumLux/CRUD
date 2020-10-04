@@ -15,14 +15,9 @@
     <h1>Список пользователей</h1>
         <ul class="list-group">
             {{range .}}
-            {{if .IsFired}}
-            <li class="list-group-item list-group-item list-group-item-danger">{{.FirstName}} {{.LastName}}</li>
-            {{else}}
-            <li class="list-group-item">{{.FirstName}} {{.LastName}}</li>
+            <li class="list-group-item">{{.FirstName}} {{.LastName}} {{.Gender}} {{.Address}}</li>
             {{end}}
-
 </ul>
-    {{end}}
 
 </div>
 
