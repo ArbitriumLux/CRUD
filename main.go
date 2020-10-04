@@ -7,7 +7,6 @@ import (
 	"fmt"
 )
 
-
 // Basic execution logic: main > router.Router > handlers > models
 func main() {
 	//DataBase migrate!

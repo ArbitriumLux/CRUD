@@ -5,16 +5,22 @@ import (
 	"Serverlox/server"
 	_ "database/sql"
 	_ "encoding/json" // package to encode and decode the json into struct and vice versa
-	_ "github.com/joho/godotenv"
-	_ "github.com/lib/pq"
+	"fmt"
 	"html/template"
 	_ "log"
 	"net/http"  // used to access the request and response object of the api
 	_ "strconv" // package used to covert string into int type
+
+	_ "github.com/joho/godotenv"
+	_ "github.com/lib/pq"
 )
 
-func GetCustomers(w http.ResponseWriter, r *http.Request) {
+type Controller struct {
+	Field int
+}
 
+func (c *Controller) GetCustomers(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(c.Field)
 	server.DataBaseConnection()
 	//Loading HTML template and Error handling
 	tmpl, err := template.ParseFiles("static/users.html")
@@ -34,8 +40,7 @@ func GetCustomers(w http.ResponseWriter, r *http.Request) {
 	defer server.Db.Close()
 }
 
-
-func IndexPage(w http.ResponseWriter, r * http.Request){
+func IndexPage(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("static/index.html")
 
 	// Error handling
