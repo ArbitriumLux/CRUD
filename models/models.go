@@ -11,5 +11,4 @@ type Customer struct {
 	Birthday  string `json:"birthday"`
 	Gender    string `json:"gender"`
 	Email     string `json:"email"`
-	Address   string `json:"address"`
 }
