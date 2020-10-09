@@ -15,7 +15,7 @@
     <h1>Список пользователей</h1>
         <ul class="list-group">
             {{range .}}
-            <li class="list-group-item">{{.FirstName}} {{.LastName}} {{.Gender}} {{.Address}}</li>
+            <li class="list-group-item"><b>Name: </b> {{.FirstName}} <b>Last Name: </b> {{.LastName}} <b>Gender: </b> {{.Gender}} </li>
             {{end}}
 </ul>
 
