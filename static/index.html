@@ -8,13 +8,29 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>CRUD</title>
 </head>
 <body>
-<div class="container">
-    <h1>Hello, world!</h1>
+    <div>
+        <form method="POST" action="create/customer">
+            <p><input type="text" name="FirstName"></p>
+            <p><input type="text" name="LastName"></p>
+            <p><input type="text" name="Birthday" ></p>
+            <p><input type="text" name="Gender"></p>
+            <p><input type="text" name="Email"></p>
+            <p><input type="submit" value="Save user"></p>
+        </form>
+    </div>
 
-</div>
+    <div class="container">
+        <h1>Список пользователей</h1>
+            <ul class="list-group">
+                {{range .}}
+                <li class="list-group-item"><b>Name: </b> {{.FirstName}} <b>Last Name: </b> {{.LastName}} <b>Gender: </b> {{.Gender}} </li>
+                {{end}}
+    </ul>
+    
+    </div>
 
 </body>
 </html>

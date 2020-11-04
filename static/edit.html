@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>CRUD</title>
+</head>
+<body>
+    <div>
+        <form method="POST" action="update">
+            <p><input type="text" name="FirstName" value={{.FirstName}}></p>
+            <p><input type="text" name="LastName" value={{.LastName}}></p>
+            <p><input type="text" name="Birthday" value={{.Birthday}}></p>
+            <p><input type="text" name="Gender" value={{.Gender}}></p>
+            <p><input type="text" name="Email" value={{.Email}}></p>
+            <p><input type="submit" value="Save user"></p>
+        </form>
+    </div>
+
+</body>
+</html>

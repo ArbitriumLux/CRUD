@@ -20,9 +20,10 @@ func Router() {
 	router.HandleFunc("/", middleware.IndexPage).Methods("GET")
 	router.HandleFunc("/customers", controller.GetCustomers).Methods("GET")
 	router.HandleFunc("/customer/{id}", middleware.GetCustomer).Methods("GET")
-	router.HandleFunc("/delete/customer/{id}", middleware.DeleteCustomer).Methods("DELETE")
+	router.HandleFunc("/delete", middleware.DeleteCustomer)
 	router.HandleFunc("/create/customer", middleware.CreateCustomer).Methods("POST")
-
+	router.HandleFunc("/update", middleware.UpdateCustomer)
+	router.HandleFunc("/edit", middleware.Edit)
 
 	handler := cors.Default().Handler(router)
 	log.Fatal(http.ListenAndServe(port, handler))

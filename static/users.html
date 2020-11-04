@@ -11,13 +11,50 @@
     <title>Hello, world!</title>
 </head>
 <body>
+    <div>
+        <form method="POST" action="create/customer">
+            <p><input type="text" name="FirstName"></p>
+            <p><input type="text" name="LastName"></p>
+            <p><input type="text" name="Birthday" ></p>
+            <p><input type="text" name="Gender"></p>
+            <p><input type="text" name="Email"></p>
+            <p><input type="submit" value="Save user"></p>
+        </form>
+    </div>
 <div class="container">
     <h1>Список пользователей</h1>
-        <ul class="list-group">
+    <table border="1">
+        <thead>
+        <tr>
+          <td>  <b>ID         </b></td>
+          <td>  <b>FirstName  </b></td>
+          <td>  <b>LastName   </b></td>
+          <td>  <b>Birthday   </b></td>
+          <td>  <b>Gender     </b></td>
+          <td>  <b>Email      </b></td>
+          <td>  <b>DELETE</b> </td>
+        </tr>
+         </thead>
+         <tbody>
+      {{ range . }}
+        <tr>
+            <td>{{ .ID }}</td>
+            <td> {{ .FirstName }} </td>
+            <td>{{ .LastName }} </td> 
+            <td> {{ .Birthday }}</td>
+            <td>{{ .Gender }}</td>
+            <td>{{ .Email }}</td>
+            <td><a href="/delete?id={{ .ID }}">Delete {{ .ID }}</p></td>
+            <td><a href="/edit?id={{ .ID }}">Edit {{ .ID }}</p></td>
+        </tr>
+      {{ end }}
+         </tbody>
+      </table>
+        <!-- <ul class="list-group">
             {{range .}}
-            <li class="list-group-item"><b>Name: </b> {{.FirstName}} <b>Last Name: </b> {{.LastName}} <b>Gender: </b> {{.Gender}} </li>
+            <li class="list-group-item"><b>Name: </b> {{.FirstName}} <b>Last Name: </b> {{.LastName}} <b>Birthday: </b> {{.Birthday}} <b>Gender: </b> {{.Gender}} <b>Email: </b> {{.Email}}</li>
             {{end}}
-</ul>
+</ul> -->
 
 </div>
 
