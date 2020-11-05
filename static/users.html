@@ -8,10 +8,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>CRUD</title>
 </head>
 <body>
-    <div>
+    <!--<div>
         <form method="POST" action="create/customer">
             <p><input type="text" name="FirstName"></p>
             <p><input type="text" name="LastName"></p>
@@ -20,10 +20,71 @@
             <p><input type="text" name="Email"></p>
             <p><input type="submit" value="Save user"></p>
         </form>
-    </div>
+    </div>-->
 <div class="container">
     <h1>Список пользователей</h1>
-    <table border="1">
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">ID </th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Birthday</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Email</th>
+            <th scope="col">DELETE</th>
+            <th scope="col">EDIT</th>
+          </tr>
+        </thead>
+        <tbody>
+            {{ range . }}
+          <tr>
+            <td>{{ .ID }}</td>
+            <td>{{ .FirstName }}</td>
+            <td>{{ .LastName }}</td>
+            <td>{{ .Birthday }}</td>
+            <td>{{ .Gender }}</td>
+            <td>{{ .Email }}</td>
+            <td><a href="/delete?id={{ .ID }}">
+                <svg width="3em" height="2em" viewBox="0 0 16 16" class="bi bi-x-octagon-fill" fill="darkred" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                  </svg></td>
+            <td><a href="/edit?id={{ .ID }}">
+                <svg width="3em" height="2em" viewBox="0 0 16 16" class="bi bi-pencil" fill="blue" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                  </svg></td>
+          </tr>
+          {{ end }}
+        </tbody>
+      </table>
+
+      <div>
+        <form method="POST" action="create/customer">
+            <div class="form-group">
+              <label for="exampleInputText">First Name</label>
+              <input type="text" class="form-control" id="exampleFormControlText1" name="FirstName">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputText">Last Name</label>
+              <input type="text" class="form-control" id="exampleFormControlText1" name="LastName">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputText">Birthday</label>
+                <input type="text" class="form-control" id="exampleFormControlText1" name="Birthday">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputText">Gender</label>
+                <input type="text" class="form-control" id="exampleFormControlText1" name="Gender">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputText">Email</label>
+                <input type="text" class="form-control" id="exampleFormControlText1" name="Email">
+              </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </form>
+        </div>
+
+    <!--<table border="1">
         <thead>
         <tr>
           <td>  <b>ID         </b></td>
@@ -32,7 +93,8 @@
           <td>  <b>Birthday   </b></td>
           <td>  <b>Gender     </b></td>
           <td>  <b>Email      </b></td>
-          <td>  <b>DELETE</b> </td>
+          <td>  <b>DELETE     </b></td>
+          <td>  <b>EDIT       </b></td>
         </tr>
          </thead>
          <tbody>
@@ -44,12 +106,18 @@
             <td> {{ .Birthday }}</td>
             <td>{{ .Gender }}</td>
             <td>{{ .Email }}</td>
-            <td><a href="/delete?id={{ .ID }}">Delete {{ .ID }}</p></td>
-            <td><a href="/edit?id={{ .ID }}">Edit {{ .ID }}</p></td>
+            <td><a href="/delete?id={{ .ID }}">
+                <svg width="3em" height="2em" viewBox="0 0 16 16" class="bi bi-x-octagon-fill" fill="darkred" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                  </svg></td>
+            <td><a href="/edit?id={{ .ID }}">
+                <svg width="3em" height="2em" viewBox="0 0 16 16" class="bi bi-pencil" fill="blue" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                  </svg></td>
         </tr>
       {{ end }}
          </tbody>
-      </table>
+      </table> -->
         <!-- <ul class="list-group">
             {{range .}}
             <li class="list-group-item"><b>Name: </b> {{.FirstName}} <b>Last Name: </b> {{.LastName}} <b>Birthday: </b> {{.Birthday}} <b>Gender: </b> {{.Gender}} <b>Email: </b> {{.Email}}</li>

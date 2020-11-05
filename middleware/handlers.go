@@ -124,7 +124,6 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 	nId := r.URL.Query().Get("id")
 	var customers models.Customer
 	server.Db.First(&customers, nId)
-
 	tmpl, err := template.ParseFiles("static/edit.html")
 	if err != nil {
 		http.Error(w, err.Error(), 400)
@@ -134,8 +133,8 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), 400)
 		return
 	}
-
 	defer server.Db.Close()
+	http.Redirect(w, r, "/customers", 301)
 }
 
 func UpdateCustomer(w http.ResponseWriter, r *http.Request) {
