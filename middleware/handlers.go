@@ -10,9 +10,10 @@ import (
 	"html/template"
 	"log"
 	_ "log"
-	"net/http"  // used to access the request and response object of the api
-	_ "strconv" // package used to covert string into int type
+	"net/http" // used to access the request and response object of the api
+	"strconv"
 
+	// package used to covert string into int type
 	"github.com/gorilla/mux"
 
 	_ "github.com/joho/godotenv" //TODO
@@ -121,9 +122,11 @@ func CreateCustomer(w http.ResponseWriter, r *http.Request) {
 
 func Edit(w http.ResponseWriter, r *http.Request) {
 	server.DataBaseConnection()
+	defer server.Db.Close()
 	nId := r.URL.Query().Get("id")
 	var customers models.Customer
 	server.Db.First(&customers, nId)
+	log.Printf("customers: %v", customers)
 	tmpl, err := template.ParseFiles("static/edit.html")
 	if err != nil {
 		http.Error(w, err.Error(), 400)
@@ -133,10 +136,28 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), 400)
 		return
 	}
-	defer server.Db.Close()
-	http.Redirect(w, r, "/customers", 301)
+
 }
 
 func UpdateCustomer(w http.ResponseWriter, r *http.Request) {
-	//................................
+	server.DataBaseConnection()
+	defer server.Db.Close()
+	var customers models.Customer
+	if r.Method == "POST" {
+		//	customers.ID = strconv.ParseUint(r.FormValue("ID"), 10, 16)
+		log.Printf("FormValue: %v", r.FormValue("Index"))
+		customersID, err := strconv.ParseUint(r.FormValue("Index"), 10, 32)
+		if err != nil {
+			log.Fatal(err)
+		}
+		customers.ID = uint(customersID)
+		customers.FirstName = r.FormValue("FirstName")
+		customers.LastName = r.FormValue("LastName")
+		customers.Email = r.FormValue("Email")
+		customers.Gender = r.FormValue("Gender")
+		customers.Birthday = r.FormValue("Birthday")
+	}
+	log.Printf("customers: %v", customers)
+	server.Db.Save(&customers)
+	http.Redirect(w, r, "/customers", 301)
 }

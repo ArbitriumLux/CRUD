@@ -12,26 +12,30 @@
 </head>
 <body>
     <div>
-        <form method="POST" action="create/customer">
+        <form method="POST" action="update">
+          <div class="form-group">
+            <label for="exampleInputText">ID</label>
+            <input  type="number" class="form-control" id="exampleFormControlText1" name="Index" value="{{ .ID }}">
+          </div>
             <div class="form-group">
               <label for="exampleInputText">First Name</label>
-              <input type="text" class="form-control" id="exampleFormControlText1" name="FirstName">
+              <input type="text" class="form-control" id="exampleFormControlText1" name="FirstName" value="{{ .FirstName }}">
             </div>
             <div class="form-group">
               <label for="exampleInputText">Last Name</label>
-              <input type="text" class="form-control" id="exampleFormControlText1" name="LastName">
+              <input type="text" class="form-control" id="exampleFormControlText1" name="LastName" value="{{ .LastName }}">
             </div>
             <div class="form-group">
                 <label for="exampleInputText">Birthday</label>
-                <input type="text" class="form-control" id="exampleFormControlText1" name="Birthday">
+                <input type="text" class="form-control" id="exampleFormControlText1" name="Birthday" value="{{ .Birthday }}">
               </div>
               <div class="form-group">
                 <label for="exampleInputText">Gender</label>
-                <input type="text" class="form-control" id="exampleFormControlText1" name="Gender">
+                <input type="text" class="form-control" id="exampleFormControlText1" name="Gender" value="{{ .Gender }}">
               </div>
               <div class="form-group">
                 <label for="exampleInputText">Email</label>
-                <input type="text" class="form-control" id="exampleFormControlText1" name="Email">
+                <input type="text" class="form-control" id="exampleFormControlText1" name="Email" value="{{ .Email }}">
               </div>
             <button type="submit" class="btn btn-primary">Save</button>
           </form>
