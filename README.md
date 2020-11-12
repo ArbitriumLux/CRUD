@@ -1,3 +1,2 @@
-# Serverlox
-This is a simple CRUD wep application created using Go and PostgreSQL
-sqlx
+# CRUD
+This is a CRUD web application created using Go and PostgreSQL
